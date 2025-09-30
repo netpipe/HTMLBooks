@@ -120,12 +120,15 @@ public:
 #endif
 
         // Default: home file path empty until user opens directory or file
-        siteDir = QDir::currentPath();
+        siteDir = QDir::currentPath()+"/book/";
         indexPath = QDir(siteDir).filePath("index.html");
         if (QFile::exists(indexPath)) {
             loadLocal(indexPath);
         }
-
+              indexPath = QDir(siteDir).filePath("index.htm");
+        if (QFile::exists(indexPath)) {
+            loadLocal(indexPath);
+        }
         // connect selection changed to update status
         connect(webview, &QWebEngineView::urlChanged, this, &MiniBrowser::onUrlChanged);
     }
